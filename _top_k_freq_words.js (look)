@@ -1,0 +1,28 @@
+/**
+ * @param {string[]} words
+ * @param {number} k
+ * @return {string[]}
+ */
+var topKFrequent = function(words, k) {
+
+    let map = new Map()
+    for( let i of words){
+        map.set(i, map.get(i)+1 || 1)
+    }
+
+    let val = [...map.entries()].sort((a,b)=>{
+        if(a[1]==b[1]){
+            return a[0].localeCompare(b[0])
+        }
+        return b[1]-a[1]
+    })
+    
+    let res=[]
+    for(let i=0; i<k;i++){
+        let ele = val[i][0]
+        res.push(ele)
+    }
+    return res
+
+    
+};
